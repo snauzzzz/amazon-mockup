@@ -656,5 +656,21 @@ const products = [
       "apparel",
       "mens"
     ]
+  }, 
+  {
+    id: "gojo",
+    image: "images/products/16a24-16954258684331-1920.avif",
+    name: "Gojo",
+    rating: {
+      stars: 2.5,
+      count: 69420
+    },
+    priceCents: 500,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
   }
 ];
