@@ -2,7 +2,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 export const deliveryOptions = [{
     id: '1',
-    deliveryDays: 7,
+    deliveryDays: 9,
     priceCents: 0
 }, {
     id: '2',
@@ -28,13 +28,30 @@ export function getDeliveryOption(deliveryOptionId) {
 
 export function calculateDeliveryDate(deliveryOption) {
     const today = dayjs();
-    const deliveryDate = today.add(
-        deliveryOption.deliveryDays,
-        'days'
-    );
+
+    let deliveryDate = today;
+    
+    let remainingDays = deliveryOption.deliveryDays;
+
+    //Make sure that the delivery date isn't on the weekends
+    while (remainingDays > 0) {
+        deliveryDate = deliveryDate.add(
+            1,
+            'days'
+        );
+        if (!isWeekend(deliveryDate)) {
+            remainingDays--;
+        };
+    }
+
     const dateString = deliveryDate.format(
         'dddd, MMMM D'
     );
 
     return dateString;
+}
+
+export function isWeekend(deliveryDate) {
+    const dateString = deliveryDate.day();
+    return dateString === 6 || dateString === 0;
 }
