@@ -35,13 +35,16 @@ export function calculateDeliveryDate(deliveryOption) {
 
     //Make sure that the delivery date isn't on the weekends
     while (remainingDays > 0) {
+
         deliveryDate = deliveryDate.add(
             1,
             'days'
         );
+        
         if (!isWeekend(deliveryDate)) {
             remainingDays--;
         };
+
     }
 
     const dateString = deliveryDate.format(
